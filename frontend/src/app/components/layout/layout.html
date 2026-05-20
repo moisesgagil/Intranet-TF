@@ -1,0 +1,187 @@
+<div class="h-screen bg-[#f0f2f5] flex font-sans text-slate-700 overflow-hidden">
+
+  <aside class="w-[72px] bg-[#233240] flex flex-col items-center py-4 z-30 shadow-xl shrink-0">
+    
+    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white font-black text-lg mb-8 cursor-pointer hover:bg-[#0070f2] transition-colors" title="Techfoods">
+      TF
+    </div>
+
+    <nav class="flex flex-col gap-4 w-full px-2">
+      <a routerLink="/inicio" routerLinkActive="bg-[#0070f2] text-white" [routerLinkActiveOptions]="{exact: true}" class="w-full h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer group" title="Inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+      </a>
+
+      <a class="w-full h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer group" title="Publicaciones">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" /></svg>
+      </a>
+
+      <a class="w-full h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer group relative" title="Incidentes">
+        <span class="absolute top-2 right-3 w-2 h-2 bg-red-500 rounded-full border border-[#233240]"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3Z" /></svg>
+      </a>
+
+      <a routerLinkActive="bg-[#0070f2] text-white" class="w-full h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer group" title="Personas">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" /></svg>
+      </a>
+
+      <a class="w-full h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer group" title="Manuales">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+      </a>
+
+      <a class="w-full h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer group" title="Requerimientos">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" /></svg>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="flex-1 flex flex-col min-w-0 h-screen relative">
+    
+    <header class="bg-[#354a5f] text-white shadow-sm relative z-40 shrink-0">
+      <div class="px-6 h-12 flex items-center justify-between">
+        
+        <div class="font-bold text-lg tracking-tight">
+          TECHFOODS <span class="font-light text-slate-300">Intranet</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="relative hidden sm:block">
+            <input type="text" placeholder="Buscar en Techfoods..." class="bg-white/10 border-none rounded py-1 px-3 text-xs w-64 focus:bg-white focus:text-slate-800 transition-all outline-none placeholder:text-white/50">
+          </div>
+          
+          <div class="relative">
+            <div (click)="toggleMenuPerfil($event)" 
+                 class="w-8 h-8 rounded-full bg-blue-500 border border-white/20 flex items-center justify-center text-xs font-bold cursor-pointer hover:bg-blue-600 transition-colors select-none">
+              {{ iniciales }}
+            </div>
+
+            @if (menuPerfilAbierto) {
+              <div class="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50 animate-fade-in text-slate-700">
+                <div class="px-4 py-2 border-b border-slate-100 mb-1">
+                  <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Sesión iniciada</p>
+                  <p class="text-sm font-bold text-slate-800 truncate">{{ miUsuario }}</p>
+                </div>
+
+                <a routerLink="/perfil" class="flex items-center gap-3 px-4 py-2 text-sm hover:bg-slate-50 cursor-pointer transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-slate-400"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+                  Ver Perfil
+                </a>
+
+                <a class="flex items-center gap-3 px-4 py-2 text-sm hover:bg-slate-50 cursor-pointer transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-slate-400"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-1.514 2.018a14.953 14.953 0 0 1-6.737-6.737l2.018-1.514c.361-.272.527-.834.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
+                  Información de Contacto
+                </a>
+
+                <div class="h-[1px] bg-slate-100 my-1"></div>
+
+                <button (click)="ejecutarCerrarSesion()" 
+                        class="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-semibold text-left transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M19.5 12l-3-3m3 3-3 3m3-3H9" /></svg>
+                  Cerrar Sesión
+                </button>
+              </div>
+            }
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full overflow-y-auto px-4 py-6">
+      <div class="max-w-4xl mx-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+
+    <div class="fixed bottom-0 right-8 z-50 flex items-end gap-4 pointer-events-none">
+      
+      @for (chat of chatsAbiertos; track chat.nombre) {
+        <div class="w-80 bg-white border border-slate-300 border-b-0 rounded-t-lg shadow-xl flex flex-col transition-all duration-300 pointer-events-auto overflow-hidden" 
+             [ngClass]="chat.minimizado ? 'h-12' : 'h-[400px]'">
+          
+          <div class="h-12 bg-[#354a5f] text-white px-3 flex justify-between items-center cursor-pointer rounded-t-lg shrink-0 hover:bg-[#2a3c4d]" 
+               (click)="toggleMinimizarChat(chat)">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-white/20" [ngClass]="chat.color">
+                {{ chat.inicial }}
+              </div>
+              <span class="text-sm font-semibold">{{ chat.nombre }}</span>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-slate-300 hover:text-white transition-transform duration-300" [ngClass]="chat.minimizado ? 'rotate-180' : ''">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 hover:text-red-400 ml-1" (click)="cerrarConversacion(chat, $event)">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </div>
+          </div>
+
+          @if (!chat.minimizado) {
+            <div class="flex-1 p-3 overflow-y-auto bg-slate-50 space-y-3 flex flex-col">
+              @for (msj of obtenerMensajesDe(chat.nombre); track msj.id) {
+                <div class="flex flex-col max-w-[85%]" [ngClass]="msj.emisor === miUsuario ? 'self-end' : 'self-start'">
+                  <div class="px-3 py-1.5 rounded-2xl text-sm shadow-sm" 
+                       [ngClass]="msj.emisor === miUsuario ? 'bg-blue-600 text-white rounded-br-none' : 'bg-white border border-slate-200 text-slate-700 rounded-bl-none'">
+                    {{ msj.texto }}
+                  </div>
+                  <span class="text-[10px] text-slate-400 mt-0.5 px-1" [ngClass]="msj.emisor === miUsuario ? 'text-right' : 'text-left'">
+                    {{ msj.fecha | date:'shortTime' }}
+                  </span>
+                </div>
+              } @empty {
+                <p class="text-xs text-center text-slate-400 mt-4">No tienes mensajes anteriores con {{ chat.nombre }}. ¡Saluda!</p>
+              }
+            </div>
+
+            <div class="p-2 bg-white border-t border-slate-200 shrink-0">
+              <input 
+                type="text" 
+                [(ngModel)]="chat.nuevoMensajeTexto"
+                (keyup.enter)="enviarMensaje(chat)"
+                placeholder="Escribe un mensaje..."
+                class="w-full bg-slate-100 border-none rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500">
+            </div>
+          }
+        </div>
+      }
+
+      <div class="w-72 bg-white border border-slate-300 border-b-0 rounded-t-lg shadow-xl flex flex-col transition-all duration-300 pointer-events-auto overflow-hidden" [ngClass]="chatAbierto ? 'h-[400px]' : 'h-12'">
+        
+        <div class="h-12 bg-white hover:bg-slate-50 border-b border-slate-200 px-4 flex justify-between items-center cursor-pointer rounded-t-lg shrink-0" (click)="toggleListaChat()">
+          <div class="flex items-center gap-2">
+            <div class="w-2.5 h-2.5 bg-green-500 rounded-full border border-white shadow-sm"></div>
+            <span class="text-sm font-bold text-slate-800">Mensajes</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-slate-500 transition-transform duration-300" [ngClass]="chatAbierto ? 'rotate-180' : ''">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+          </svg>
+        </div>
+
+        @if (chatAbierto) {
+          <div class="flex-1 overflow-y-auto">
+            <div class="p-2">
+              <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Buscar compañero..." class="w-full bg-slate-100 border-none rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500">
+            </div>
+            <div class="space-y-0">
+              @for (persona of companerosFiltrados; track persona.nombre) {
+                <div class="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors" (click)="abrirConversacion(persona)">
+                  <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm" [ngClass]="persona.color">
+                    {{ persona.inicial }}
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm font-semibold text-slate-800">{{ persona.nombre }}</p>
+                    <p class="text-xs text-slate-500 truncate">Disponible</p>
+                  </div>
+                </div>
+              } @empty {
+                <p class="text-xs text-center text-slate-400 py-4">No se encontró a nadie con ese nombre.</p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</div>

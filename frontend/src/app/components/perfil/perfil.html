@@ -1,0 +1,97 @@
+<div class="max-w-4xl mx-auto space-y-6 pb-10">
+
+  <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+    <div class="h-24 bg-gradient-to-r from-slate-800 to-slate-600"></div>
+    
+    <div class="px-6 pb-6 relative">
+      <div class="absolute -top-12 left-6 w-24 h-24 rounded-full border-4 border-white bg-[#0070f2] flex items-center justify-center text-white text-3xl font-bold shadow-md">
+        {{ usuario.nombre.substring(0, 2).toUpperCase() }}
+      </div>
+
+      <div class="pt-14 flex justify-between items-start">
+        <div>
+          <h1 class="text-2xl font-bold text-slate-800">{{ usuario.nombre }}</h1>
+          <p class="text-slate-500 font-medium mt-1">{{ usuario.cargo }} • {{ usuario.departamento }}</p>
+          <div class="flex items-center gap-2 mt-2 text-sm text-slate-400">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+            {{ usuario.planta }}
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-lg border border-slate-100 p-3 text-center min-w-[120px]">
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Nivel {{ usuario.nivel }}</p>
+          <p class="text-xl font-bold text-[#0070f2]">{{ usuario.puntos }} <span class="text-xs text-slate-500 font-normal">pts</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-slate-100 flex">
+      <button (click)="cambiarPestana('habilidades')" 
+              class="flex-1 py-3 text-sm font-semibold transition-colors border-b-2"
+              [ngClass]="pestanaActiva === 'habilidades' ? 'border-[#0070f2] text-[#0070f2]' : 'border-transparent text-slate-500 hover:bg-slate-50'">
+        Habilidades y Certificaciones
+      </button>
+      <button (click)="cambiarPestana('insignias')" 
+              class="flex-1 py-3 text-sm font-semibold transition-colors border-b-2"
+              [ngClass]="pestanaActiva === 'insignias' ? 'border-[#0070f2] text-[#0070f2]' : 'border-transparent text-slate-500 hover:bg-slate-50'">
+        Insignias Logradas
+      </button>
+      <button (click)="cambiarPestana('actividad')" 
+              class="flex-1 py-3 text-sm font-semibold transition-colors border-b-2"
+              [ngClass]="pestanaActiva === 'actividad' ? 'border-[#0070f2] text-[#0070f2]' : 'border-transparent text-slate-500 hover:bg-slate-50'">
+        Actividad Reciente
+      </button>
+    </div>
+  </div>
+
+  @if (pestanaActiva === 'habilidades') {
+    <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+      <h2 class="text-lg font-bold text-slate-800 mb-4">Matriz de Competencias</h2>
+      
+      <div class="space-y-6">
+        @for (habilidad of habilidades; track habilidad.nombre) {
+          <div>
+            <div class="flex justify-between items-end mb-1">
+              <span class="text-sm font-semibold text-slate-700">{{ habilidad.nombre }}</span>
+              <span class="text-xs font-bold" 
+                    [ngClass]="habilidad.progreso === 100 ? 'text-emerald-600' : 'text-slate-500'">
+                {{ habilidad.estado }} ({{ habilidad.progreso }}%)
+              </span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+              <div class="h-2.5 rounded-full transition-all duration-500" 
+                   [ngClass]="habilidad.color" 
+                   [style.width]="habilidad.progreso + '%'"></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  @if (pestanaActiva === 'insignias') {
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      @for (insignia of insignias; track insignia.titulo) {
+        <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-5 flex items-start gap-4 hover:border-slate-300 transition-colors">
+          <div class="w-14 h-14 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-2xl shrink-0 shadow-sm">
+            {{ insignia.icono }}
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-800">{{ insignia.titulo }}</h3>
+            <p class="text-sm text-slate-500 mt-1 leading-snug">{{ insignia.descripcion }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (pestanaActiva === 'actividad') {
+    <div class="text-center py-12 bg-white rounded-lg shadow-sm border border-slate-200">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 mx-auto text-slate-300 mb-3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+      <p class="text-slate-500 font-medium">Aún no hay actividad registrada en la línea.</p>
+    </div>
+  }
+
+</div>
