@@ -6,6 +6,8 @@ import { Chat } from '../../services/chat';
 import { Auth } from '../../services/auth';
 import { SocketService } from '../../services/socket';
 
+
+// esto es una prueba de git hub
 @Component({
   selector: 'app-layout',
   standalone: true,
