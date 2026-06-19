@@ -1,10 +1,11 @@
 import { Injectable, UnauthorizedException, OnModuleInit } from '@nestjs/common';
-import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
-import { Repository, DataSource } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { Usuario } from './entities/usuario.entity';
 import * as bcrypt from 'bcryptjs';
 import * as https from 'https';
+import { LirionService } from '../lirion/lirion.service';
 
 @Injectable()
 export class AuthService implements OnModuleInit {
@@ -12,9 +13,7 @@ export class AuthService implements OnModuleInit {
     @InjectRepository(Usuario, 'intranetConnection')
     private usuarioRepository: Repository<Usuario>,
     
-    // Inyectamos la conexión configurada de Lirion
-    @InjectDataSource('lirionConnection')
-    private lirionDataSource: DataSource,
+    private lirionService: LirionService,
     
     private jwtService: JwtService
   ) {}
@@ -39,12 +38,13 @@ export class AuthService implements OnModuleInit {
     let isValidInLirion = false;
 
     // 1. PASO MANDATORIO: VALIDACIÓN CONTRA LA API DE LIRION (LDAP)
+    const config = await this.lirionService.getApiConfig();
     try {
       const data = JSON.stringify({ userName: username, password: passwordString });
       
       const options = {
-        hostname: '192.168.3.80',
-        port: 8452,
+        hostname: config.host,
+        port: config.port,
         path: '/api/v1/auth/tokens',
         method: 'POST',
         headers: {
@@ -89,7 +89,7 @@ export class AuthService implements OnModuleInit {
         LIMIT 1
       `;
       
-      const lirionRes = await this.lirionDataSource.query(lirionQuery, [username]);
+      const lirionRes = await this.lirionService.query(lirionQuery, [username]);
 
       if (lirionRes.length > 0) {
         const lirionUser = lirionRes[0];

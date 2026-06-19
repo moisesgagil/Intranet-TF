@@ -3,6 +3,8 @@ import { Layout } from './components/layout/layout';
 import { Inicio } from './pages/inicio/inicio';
 import { Login } from './pages/login/login';
 import { Perfil } from './components/perfil/perfil';
+import { Configuracion } from './pages/configuracion/configuracion';
+import { Usuarios } from './pages/usuarios/usuarios';
 import { authGuard } from './guards/auth-guard'; // Nuestro guardián
 
 export const routes: Routes = [
@@ -33,6 +35,16 @@ export const routes: Routes = [
         path: 'perfil', 
         component: Perfil, 
         canActivate: [authGuard] // <-- ¡LE PONEMOS EL CANDADO TAMBIÉN A TU NUEVO PERFIL POKA!
+      },
+      { 
+        path: 'configuracion', 
+        component: Configuracion, 
+        canActivate: [authGuard] 
+      },
+      { 
+        path: 'usuarios', 
+        component: Usuarios, 
+        canActivate: [authGuard] 
       }
     ]
   },

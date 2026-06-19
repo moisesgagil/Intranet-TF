@@ -6,6 +6,9 @@ import { RhModule } from './rh/rh.module';   //------------------------------ co
 import { SocialModule } from './social/social.module';
 import { ChatModule } from './chat/chat.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfiguracionModule } from './configuracion/configuracion.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
+import { LirionModule } from './lirion/lirion.module';
 
 @Module({
   imports: [
@@ -21,23 +24,14 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
       synchronize: true, // Útil en desarrollo, crea las tablas automático
     }),
-    
-    // Conexión 2: La base de datos de Lirion (ERP)   --------------------------------------comentado mientras no hay vpn
-    TypeOrmModule.forRoot({
-      name: 'lirionConnection',
-      type: 'postgres',
-      host: '192.168.3.80',
-      port: 5432,
-      username: 'adempiere',
-      password: 'adempiere',
-      database: 'liriontechfoodstest_29122025',
-      synchronize: false, // En false para no alterar la DB de Lirion
-    }),
 
     RhModule,  //Comentar esto igual si no hay VPN
     SocialModule,
     ChatModule,
     AuthModule,
+    ConfiguracionModule,
+    UsuariosModule,
+    LirionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
