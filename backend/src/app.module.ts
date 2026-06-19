@@ -9,11 +9,15 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    // Conexión 1: Tu base de datos nueva para la Intranet (AHORA CON SQLITE)
+    // Conexión 1: Tu base de datos nueva para la Intranet (AHORA CON MYSQL)
     TypeOrmModule.forRoot({
       name: 'intranetConnection', // Nombre clave
-      type: 'sqlite',
-      database: 'techfoods_intranet.sqlite', // TypeORM creará este archivo automáticamente
+      type: 'mysql',
+      host: '192.168.3.254',
+      port: 3306,
+      username: 'sysop',
+      password: 'fewlikeme123!',
+      database: 'intranet-tf',
       autoLoadEntities: true,
       synchronize: true, // Útil en desarrollo, crea las tablas automático
     }),
