@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, inject } from '@angular/core';
+import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,10 +7,11 @@ import { Auth } from '../../services/auth';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Vitales para *ngIf y [(ngModel)]
-  templateUrl: './login.html'
+  imports: [CommonModule, FormsModule],
+  templateUrl: './login.html',
+  styleUrls: ['./login.css']
 })
-export class Login {
+export class Login implements OnInit {
   loginData = {
     username: '',
     password: ''
@@ -19,10 +20,19 @@ export class Login {
   showPassword = false;
   errorMessage = '';
   loading = false;
+  rememberMe = false;
 
   private authService = inject(Auth);
   private router = inject(Router);
   private cd = inject(ChangeDetectorRef);
+
+  ngOnInit() {
+    const savedUser = localStorage.getItem('techfoods_user');
+    if (savedUser) {
+      this.loginData.username = savedUser;
+      this.rememberMe = true;
+    }
+  }
 
   onLogin() {
     if (!this.loginData.username || !this.loginData.password) {
@@ -33,15 +43,18 @@ export class Login {
     this.loading = true;
     this.errorMessage = '';
 
+    if (this.rememberMe) {
+      localStorage.setItem('techfoods_user', this.loginData.username);
+    } else {
+      localStorage.removeItem('techfoods_user');
+    }
+
     this.authService.login(this.loginData).subscribe({
       next: (res) => {
         this.loading = false;
         this.cd.detectChanges(); // Forzamos actualización de UI
         
-        const rol = res.rol?.toLowerCase();
-
-        // Como estamos en la Intranet, mandamos a todos al Inicio por ahora.
-        // Después podemos separarlos si necesitas vistas exclusivas por rol.
+        // Redirige al Inicio
         this.router.navigate(['/inicio']);
       },
       error: (err) => {
