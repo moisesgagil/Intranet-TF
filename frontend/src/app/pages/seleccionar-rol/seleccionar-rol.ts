@@ -18,7 +18,11 @@ export class SeleccionarRol implements OnInit {
     const rolesStr = localStorage.getItem('usuario_roles');
     if (rolesStr) {
       try {
-        this.roles = JSON.parse(rolesStr);
+        const parsed = JSON.parse(rolesStr);
+        if (Array.isArray(parsed)) {
+          this.roles = parsed.map(r => r === 'operador' ? 'usuario' : r);
+          localStorage.setItem('usuario_roles', JSON.stringify(this.roles));
+        }
       } catch (e) {
         console.error('Error parseando roles', e);
       }

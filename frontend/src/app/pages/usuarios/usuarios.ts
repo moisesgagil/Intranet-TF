@@ -13,9 +13,10 @@ export class Usuarios implements OnInit {
   private http = inject(HttpClient);
   
   usuarios: any[] = [];
+  usuarioSeleccionado: any = null;
   loading = true;
 
-  rolesPermitidos = ['operador', 'admin', 'system'];
+  rolesPermitidos = ['usuario', 'admin', 'system'];
 
   ngOnInit() {
     this.cargarUsuarios();
@@ -28,7 +29,7 @@ export class Usuarios implements OnInit {
         // Aseguramos que rol siempre sea un array
         this.usuarios = data.map(u => ({
           ...u,
-          rol: Array.isArray(u.rol) ? u.rol : (typeof u.rol === 'string' ? u.rol.split(',').map((r: string)=>r.trim()) : ['operador'])
+          rol: Array.isArray(u.rol) ? u.rol : (typeof u.rol === 'string' ? u.rol.split(',').map((r: string)=>r.trim()) : ['usuario'])
         }));
         this.loading = false;
       },
@@ -39,8 +40,46 @@ export class Usuarios implements OnInit {
     });
   }
 
+  editandoEmail = false;
+  emailTemporal = '';
+
   tieneRol(usuario: any, rol: string): boolean {
     return Array.isArray(usuario.rol) && usuario.rol.includes(rol);
+  }
+
+  seleccionarUsuario(usuario: any) {
+    this.usuarioSeleccionado = usuario;
+    this.editandoEmail = false;
+    this.emailTemporal = '';
+  }
+
+  iniciarEdicionEmail() {
+    this.emailTemporal = this.usuarioSeleccionado.email || (this.usuarioSeleccionado.username + '@techfoods.cl');
+    this.editandoEmail = true;
+  }
+
+  cancelarEdicionEmail() {
+    this.editandoEmail = false;
+  }
+
+  guardarEmail() {
+    if (!this.emailTemporal || !this.emailTemporal.trim()) return;
+    
+    const usuario = this.usuarioSeleccionado;
+    if (usuario.isSavingEmail) return;
+    usuario.isSavingEmail = true;
+
+    this.http.put(`http://localhost:3000/usuarios/${usuario.id}/email`, { email: this.emailTemporal.trim() }).subscribe({
+      next: () => {
+        usuario.email = this.emailTemporal.trim();
+        usuario.isSavingEmail = false;
+        this.editandoEmail = false;
+      },
+      error: (err) => {
+        console.error('Error guardando email', err);
+        usuario.isSavingEmail = false;
+      }
+    });
   }
 
   toggleRol(usuario: any, rol: string) {
@@ -55,7 +94,7 @@ export class Usuarios implements OnInit {
     }
 
     if (rolesActuales.length === 0) {
-      rolesActuales = ['operador']; // Un usuario siempre debe tener al menos el rol operador
+      rolesActuales = ['usuario']; // Un usuario siempre debe tener al menos el rol usuario
     }
 
     this.http.put(`http://localhost:3000/usuarios/${usuario.id}/rol`, { rol: rolesActuales }).subscribe({

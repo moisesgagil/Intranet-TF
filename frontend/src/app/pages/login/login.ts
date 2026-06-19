@@ -56,12 +56,14 @@ export class Login implements OnInit {
 
         // The token is automatically saved by authService, but let's make sure
         // res.rol is now an array. If length > 1, redirect to role selection
-        if (Array.isArray(res.rol) && res.rol.length > 1) {
-          localStorage.setItem('usuario_roles', JSON.stringify(res.rol));
+        let rolesList: string[] = Array.isArray(res.rol) ? res.rol : [res.rol];
+        rolesList = rolesList.map(r => r === 'operador' ? 'usuario' : r);
+
+        if (rolesList.length > 1) {
+          localStorage.setItem('usuario_roles', JSON.stringify(rolesList));
           this.router.navigate(['/seleccionar-rol']);
         } else {
-          // If only 1 role or string, set it as the active role
-          const activeRole = Array.isArray(res.rol) ? res.rol[0] : res.rol;
+          const activeRole = rolesList[0] || 'usuario';
           localStorage.setItem('active_role', activeRole);
           this.router.navigate(['/inicio']);
         }

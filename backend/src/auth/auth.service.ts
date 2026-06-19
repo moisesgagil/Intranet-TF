@@ -95,12 +95,10 @@ export class AuthService implements OnModuleInit {
         const lirionUser = lirionRes[0];
 
         // Lógica de roles idéntica a tu index.js
-        let rolAsignado = 'operador'; 
+        let rolAsignado = 'usuario'; 
         const pistasRol = ((lirionUser.title || '') + ' ' + (lirionUser.description || '')).toLowerCase();
         if (pistasRol.includes('admin')) rolAsignado = 'admin';
-        else if (pistasRol.includes('plan')) rolAsignado = 'planificacion';
-        else if (pistasRol.includes('super')) rolAsignado = 'supervisor';
-        else if (pistasRol.includes('calidad')) rolAsignado = 'calidad';
+        else if (pistasRol.includes('system') || pistasRol.includes('sist')) rolAsignado = 'system';
 
         // Buscamos si existe en SQLite local
         localUser = await this.usuarioRepository.createQueryBuilder("usuario")
@@ -113,6 +111,7 @@ export class AuthService implements OnModuleInit {
             username: username,
             password: bcrypt.hashSync(passwordString, 10),
             nombre: lirionUser.name,
+            email: lirionUser.email || `${username}@techfoods.cl`,
             adempiere_user_id: lirionUser.ad_user_id,
             rol: [rolAsignado],
             activo: 1
@@ -123,6 +122,9 @@ export class AuthService implements OnModuleInit {
           localUser.adempiere_user_id = lirionUser.ad_user_id;
           localUser.password = bcrypt.hashSync(passwordString, 10);
           localUser.nombre = lirionUser.name;
+          if (lirionUser.email) {
+            localUser.email = lirionUser.email;
+          }
           await this.usuarioRepository.save(localUser);
         }
       } else {

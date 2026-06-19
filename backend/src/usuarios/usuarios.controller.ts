@@ -19,4 +19,9 @@ export class UsuariosController {
   updateActivo(@Param('id') id: string, @Body('activo') activo: number) {
     return this.usuariosService.updateActivo(+id, activo);
   }
+
+  @Put(':id/email')
+  updateEmail(@Param('id') id: string, @Body('email') email: string) {
+    return this.usuariosService.updateEmail(+id, email);
+  }
 }

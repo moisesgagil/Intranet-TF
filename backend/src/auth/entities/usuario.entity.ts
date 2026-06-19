@@ -20,6 +20,9 @@ export class Usuario {
   @Column("simple-array", { nullable: true })
   rol!: string[];
 
+  @Column({ nullable: true })
+  email!: string;
+
   @Column({ default: 1 })
   activo!: number;
 }

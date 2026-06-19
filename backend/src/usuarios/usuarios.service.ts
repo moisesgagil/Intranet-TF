@@ -12,7 +12,7 @@ export class UsuariosService {
 
   async findAll(): Promise<Usuario[]> {
     return this.usuariosRepository.find({
-      select: ['id', 'username', 'nombre', 'rol', 'activo', 'adempiere_user_id']
+      select: ['id', 'username', 'nombre', 'rol', 'activo', 'adempiere_user_id', 'email']
     });
   }
 
@@ -31,6 +31,15 @@ export class UsuariosService {
       throw new NotFoundException('Usuario no encontrado');
     }
     usuario.activo = activo;
+    return this.usuariosRepository.save(usuario);
+  }
+
+  async updateEmail(id: number, email: string): Promise<Usuario> {
+    const usuario = await this.usuariosRepository.findOne({ where: { id } });
+    if (!usuario) {
+      throw new NotFoundException('Usuario no encontrado');
+    }
+    usuario.email = email;
     return this.usuariosRepository.save(usuario);
   }
 }

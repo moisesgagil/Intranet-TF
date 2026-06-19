@@ -27,7 +27,7 @@ export class Layout implements OnInit {
   mensajes: any[] = [];
   
   miUsuario = localStorage.getItem('usuarioNombre') || 'Nelson';
-  rolActivo: string = localStorage.getItem('active_role') || 'operador';
+  rolActivo: string = localStorage.getItem('active_role') || 'usuario';
 
   // LA LISTA DE COMPAÑEROS AHORA NACE VACÍA
   companeros: any[] = [];
@@ -97,7 +97,7 @@ export class Layout implements OnInit {
           const compa = this.companeros.find(c => c.nombre === msj.emisor) || { 
             nombre: msj.emisor, 
             online: true,
-            rol: 'operador'
+            rol: 'usuario'
           };
           this.abrirConversacion(compa);
         }
