@@ -27,6 +27,7 @@ export class Layout implements OnInit {
   mensajes: any[] = [];
   
   miUsuario = localStorage.getItem('usuarioNombre') || 'Nelson';
+  rolActivo: string = localStorage.getItem('active_role') || 'operador';
 
   // LA LISTA DE COMPAÑEROS AHORA NACE VACÍA
   companeros: any[] = [];
@@ -206,5 +207,16 @@ export class Layout implements OnInit {
       return (emisor === miUsuarioLimpio && receptor === contactoLimpio) ||
              (emisor === contactoLimpio && receptor === miUsuarioLimpio);
     });
+  }
+
+  multiplesRolesDisponibles(): boolean {
+    const rolesStr = localStorage.getItem('usuario_roles');
+    if (!rolesStr) return false;
+    try {
+      const roles = JSON.parse(rolesStr);
+      return Array.isArray(roles) && roles.length > 1;
+    } catch {
+      return false;
+    }
   }
 }

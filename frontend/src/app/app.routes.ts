@@ -15,10 +15,14 @@ export const routes: Routes = [
     pathMatch: 'full' 
   },
   
-  // 2. Ruta pública del Login
   { 
     path: 'login', 
     component: Login 
+  },
+  
+  {
+    path: 'seleccionar-rol',
+    loadComponent: () => import('./pages/seleccionar-rol/seleccionar-rol').then(m => m.SeleccionarRol)
   },
   
   // 3. RUTAS PROTEGIDAS (Estructura corregida con Perfil incluido 🚀)
@@ -39,12 +43,12 @@ export const routes: Routes = [
       { 
         path: 'configuracion', 
         component: Configuracion, 
-        canActivate: [authGuard] 
-      },
-      { 
-        path: 'usuarios', 
-        component: Usuarios, 
-        canActivate: [authGuard] 
+        canActivate: [authGuard],
+        children: [
+          { path: '', redirectTo: 'servidor', pathMatch: 'full' },
+          { path: 'servidor', loadComponent: () => import('./pages/configuracion/servidor/servidor').then(m => m.ServidorComponent) },
+          { path: 'usuarios', loadComponent: () => import('./pages/usuarios/usuarios').then(m => m.Usuarios) }
+        ]
       }
     ]
   },

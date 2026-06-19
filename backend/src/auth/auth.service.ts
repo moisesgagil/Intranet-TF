@@ -19,18 +19,18 @@ export class AuthService implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    const adminExiste = await this.usuarioRepository.findOne({ where: { username: 'juan.tejo' }});
+    const adminExiste = await this.usuarioRepository.findOne({ where: { username: 'sysop' }});
     if (!adminExiste) {
       const nuevoUser = this.usuarioRepository.create({
-        username: 'juan.tejo',
-        password: bcrypt.hashSync('123456', 10),
-        nombre: 'Juan Pablo Tejo',
-        rol: 'admin',
-        adempiere_user_id: 100018,
+        username: 'sysop',
+        password: bcrypt.hashSync('fewlikeme123!', 10),
+        nombre: 'System Operator',
+        rol: ['system'],
+        adempiere_user_id: 0,
         activo: 1
       });
       await this.usuarioRepository.save(nuevoUser);
-      console.log('✅ Usuario local de emergencia creado en SQLite');
+      console.log('✅ Usuario local sysop creado en SQLite');
     }
   }
 
@@ -114,7 +114,7 @@ export class AuthService implements OnModuleInit {
             password: bcrypt.hashSync(passwordString, 10),
             nombre: lirionUser.name,
             adempiere_user_id: lirionUser.ad_user_id,
-            rol: rolAsignado,
+            rol: [rolAsignado],
             activo: 1
           });
           localUser = await this.usuarioRepository.save(nuevoLocal);

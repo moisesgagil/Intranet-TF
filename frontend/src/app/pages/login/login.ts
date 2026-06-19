@@ -53,12 +53,21 @@ export class Login implements OnInit {
       next: (res) => {
         this.loading = false;
         this.cd.detectChanges(); // Forzamos actualización de UI
-        
-        // Redirige al Inicio
-        this.router.navigate(['/inicio']);
+
+        // The token is automatically saved by authService, but let's make sure
+        // res.rol is now an array. If length > 1, redirect to role selection
+        if (Array.isArray(res.rol) && res.rol.length > 1) {
+          localStorage.setItem('usuario_roles', JSON.stringify(res.rol));
+          this.router.navigate(['/seleccionar-rol']);
+        } else {
+          // If only 1 role or string, set it as the active role
+          const activeRole = Array.isArray(res.rol) ? res.rol[0] : res.rol;
+          localStorage.setItem('active_role', activeRole);
+          this.router.navigate(['/inicio']);
+        }
       },
       error: (err) => {
-        this.errorMessage = err.error?.error || 'Usuario o contraseña incorrectos.';
+        this.errorMessage = err.error?.error || err.error?.message || 'Usuario o contraseña incorrectos.';
         this.loading = false;
         this.cd.detectChanges(); // Quita el spinner atascado
         console.error('Login Error:', err);

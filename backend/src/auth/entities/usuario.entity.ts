@@ -17,8 +17,8 @@ export class Usuario {
   @Column({ nullable: true })
   adempiere_user_id!: number;
 
-  @Column({ default: 'operador' })
-  rol!: string;
+  @Column("simple-array", { nullable: true })
+  rol!: string[];
 
   @Column({ default: 1 })
   activo!: number;

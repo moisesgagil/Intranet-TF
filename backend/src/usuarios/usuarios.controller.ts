@@ -11,7 +11,12 @@ export class UsuariosController {
   }
 
   @Put(':id/rol')
-  updateRole(@Param('id') id: string, @Body('rol') rol: string) {
+  updateRole(@Param('id') id: string, @Body('rol') rol: string[]) {
     return this.usuariosService.updateRole(+id, rol);
+  }
+
+  @Put(':id/activo')
+  updateActivo(@Param('id') id: string, @Body('activo') activo: number) {
+    return this.usuariosService.updateActivo(+id, activo);
   }
 }

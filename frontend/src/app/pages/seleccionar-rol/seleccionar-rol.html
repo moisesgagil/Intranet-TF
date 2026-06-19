@@ -1,0 +1,38 @@
+<div
+  class="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 flex flex-col items-center justify-center p-4 relative overflow-x-hidden overflow-y-auto">
+  
+  <div class="w-full max-w-md relative z-10 animate-fade-in-up">
+    <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 transition-all duration-300">
+      <div class="h-2 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 animate-gradient-x rounded-t-2xl"></div>
+
+      <div class="p-8">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-36 h-28 mb-2">
+            <img src="assets/logoTF_sinfondo.png" alt="Techfoods Logo" class="w-full h-full object-contain filter drop-shadow-md" />
+          </div>
+          <h1 class="text-3xl font-bold text-slate-800 tracking-tight mt-2">Techfoods</h1>
+          <p class="text-slate-500 mt-2 text-sm uppercase tracking-widest font-black">Selección de Rol</p>
+        </div>
+
+        <div class="animate-fade-in-up space-y-4 w-full relative">
+          <h3 class="text-center font-bold text-slate-700 text-lg mb-4">¿Con qué perfil deseas entrar?</h3>
+          <p class="text-center text-sm text-slate-500 mb-6">Tu cuenta tiene múltiples roles asignados. Por favor selecciona con cuál deseas iniciar esta sesión.</p>
+          
+          <div class="space-y-3">
+            <button *ngFor="let rol of roles" 
+                    type="button" 
+                    (click)="seleccionarRol(rol)"
+                    class="w-full py-4 px-6 bg-white border-2 border-blue-100 hover:border-blue-500 hover:bg-blue-50 rounded-xl text-blue-700 font-bold uppercase tracking-widest text-sm shadow-sm transition-all flex justify-between items-center group">
+              <span>{{ rol }}</span>
+              <svg class="w-5 h-5 text-blue-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-slate-100 text-center text-xs text-slate-400 uppercase tracking-[0.2em] font-mono">
+          INTRANET CORPORATIVA
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

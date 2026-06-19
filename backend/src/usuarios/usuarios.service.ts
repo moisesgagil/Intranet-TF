@@ -16,12 +16,21 @@ export class UsuariosService {
     });
   }
 
-  async updateRole(id: number, rol: string): Promise<Usuario> {
+  async updateRole(id: number, rol: string[]): Promise<Usuario> {
     const usuario = await this.usuariosRepository.findOne({ where: { id } });
     if (!usuario) {
       throw new NotFoundException('Usuario no encontrado');
     }
     usuario.rol = rol;
+    return this.usuariosRepository.save(usuario);
+  }
+
+  async updateActivo(id: number, activo: number): Promise<Usuario> {
+    const usuario = await this.usuariosRepository.findOne({ where: { id } });
+    if (!usuario) {
+      throw new NotFoundException('Usuario no encontrado');
+    }
+    usuario.activo = activo;
     return this.usuariosRepository.save(usuario);
   }
 }

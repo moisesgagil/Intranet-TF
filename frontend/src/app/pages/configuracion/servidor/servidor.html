@@ -1,0 +1,47 @@
+<div class="animate-fade-in-up space-y-6">
+  
+  <div class="border-b border-slate-100 pb-4 mb-6">
+    <h2 class="text-xl font-bold text-slate-800 tracking-tight">Servidor</h2>
+    <p class="text-sm text-slate-500">Ajustes de conexión a sistemas externos.</p>
+  </div>
+
+  <div *ngIf="loading" class="flex justify-center py-12">
+    <div class="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+  </div>
+
+  <div *ngIf="!loading" class="max-w-xl space-y-6">
+    <!-- Preferencias Card -->
+    <div class="bg-slate-50/50 rounded-2xl border border-slate-100 p-6">
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Permitir cambio de servidor</label>
+          <app-select-pro 
+            [options]="[{id: 'true', name: 'Sí'}, {id: 'false', name: 'No'}]"
+            [selectedId]="configs['allow_server_change']"
+            (selectionChange)="configs['allow_server_change'] = $event">
+          </app-select-pro>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Servidor por Defecto</label>
+          <app-select-pro 
+            [options]="[{id: 'test', name: 'Pruebas (Test)'}, {id: 'prod', name: 'Producción (Prod)'}]"
+            [selectedId]="configs['default_server']"
+            (selectionChange)="configs['default_server'] = $event">
+          </app-select-pro>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl animate-fade-in-up font-medium flex items-center gap-2 max-w-xl">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+    {{ successMessage }}
+  </div>
+
+  <div class="flex pt-4" *ngIf="!loading">
+    <button (click)="guardar()" [disabled]="saving" class="bg-blue-600 text-white font-bold py-2.5 px-6 rounded-xl shadow-lg hover:bg-blue-500 hover:-translate-y-0.5 transition-all duration-200 active:scale-95 flex items-center gap-2 disabled:opacity-50 disabled:hover:translate-y-0">
+      <span *ngIf="saving" class="animate-spin w-4 h-4 border-2 border-white/80 border-t-transparent rounded-full"></span>
+      Guardar Cambios
+    </button>
+  </div>
+</div>
